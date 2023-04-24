@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="style-3-1.css" rel="stylesheet" type="text/css">
+<script>
+var punkte= 100;
+var zahlen = new Array(0,50,10,100,-50,50,500,-20,-10);
+
+function start() {
+	document.getElementById("ergebnis").innerHTML = punkte;
+	document.getElementById("ergebnis2").innerHTML ="Sie können gewinnen: " + zahlen.join();
+	for (var i=0;i<=document.images.length;i++) {
+		document.images[i].onclick = rechne;
+	}
+}
+
+function rechne(evt) {
+	
+	arraylaenge = zahlen.length;
+	if((arraylaenge > 0)&& (punkte != 0)){
+		
+		zufallszahl = Math.floor(Math.random()*arraylaenge);
+		gewinnzahl = zahlen[zufallszahl];
+		zahlen.splice(zufallszahl,1);
+		
+			if (gewinnzahl==0) {
+			punkte=0;
+			document.getElementById("ergebnis").innerHTML ="Game Over! Sie haben 0 Punkte";
+			document.getElementById("ergebnis2").innerHTML ="";
+			return;
+			} else {
+			punkte += gewinnzahl;
+			}
+		evt.target.style.visibility = "hidden";
+		document.getElementById("ergebnis").innerHTML = punkte;
+		document.getElementById("ergebnis2").innerHTML ="Sie können noch gewinnen: " + zahlen.join();
+		} 
+		
+}
+</script>
+
+
+</head>
+
+<body onLoad="start()">
+<h1>Zocken!</h1>
+<table>
+  <tr>
+    <td><a href="#"><img src="punkt.gif" width="50" height="50" alt="punkt"></a></td>
+    <td><a href="#"><img src="punkt.gif" width="50" height="50" alt="punkt"></a></td>
+    <td><a href="#"><img src="punkt.gif" width="50" height="50" alt="punkt"></a></td>
+  </tr>
+  <tr>
+    <td><a href="#"><img src="punkt.gif" width="50" height="50" alt="punkt"></a></td>
+    <td><a href="#"><img src="punkt.gif" width="50" height="50" alt="punkt"></a></td>
+    <td><a href="#"><img src="punkt.gif" width="50" height="50" alt="punkt"></a></td>
+  </tr>
+  <tr>
+    <td><a href="#"><img src="punkt.gif" width="50" height="50" alt="punkt"></a></td>
+    <td><a href="#"><img src="punkt.gif" width="50" height="50" alt="punkt"></a></td>
+    <td><a href="#"><img src="punkt.gif" width="50" height="50" alt="punkt"></a></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<div id="fragebox">
+<div id="ergebnis"></div>
+<div id="ergebnis2"></div>
+</div>
+</body>
+</html>
